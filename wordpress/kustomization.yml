@@ -1,0 +1,7 @@
+resources:
+  - wordpress.yml
+  - mysql.yml
+  - svc-wordpress.yml
+  - wp-mysql.yml
+  - secret.yml
+  - hpa.yml
