@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weather-deployment
+  labels:
+    app: weather
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: weather
+  template:
+    metadata:
+      labels:
+        app: weather
+    spec:
+      containers:
+        - name: weather
+          image: edennolan2021/weather:1.0
+          ports:
+            - containerPort: 5000
+          env:
+            - name: APIKEY
+              value: ecbc396f46mshb65cbb1f82cf334p1fcc87jsna5e962a3c542
+          volumeMounts:
+            - name: data-volume
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: data-volume
+          emptyDir: {}

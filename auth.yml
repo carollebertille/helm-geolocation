@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-deployment
+  labels:
+    app: weather
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: weather
+  template:
+    metadata:
+      labels:
+        app: weather
+    spec:
+      containers:
+        - name: auth
+          image: edennolan2021/auth:1.0
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_HOST
+              value: weather-mysql
+            - name: DB_PASSWORD
+              value: carolle
+           
+

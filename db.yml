@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-deployment
+  labels:
+    app: weather
+    tier: db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: weather
+      tier: db
+  template:
+    metadata:
+      labels:
+        app: weather
+        tier: db
+    spec:
+      containers:
+        - name: db
+          image: edennolan2021/db:1.0
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: bertille
+            - name: MYSQL_DATABASE
+              value: weather
+            - name: MYSQL_USER
+              value: carolle
+            - name: MYSQL_PASSWORD
+              value: carolle 
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - name: mysql-storage
+              mountPath: /var/lib/mysql  # Mount the volume to the MySQL data directory
+      volumes:
+        - name: mysql-storage
+          hostPath:
+            path: /data/mysql  # Create a PVC for MySQL data storage
