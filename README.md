@@ -1,1 +1,1 @@
-### This repository contains manifests for differents applications
+### This repository contains manifests and helm charts  for differents applications
