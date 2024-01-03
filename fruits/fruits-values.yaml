@@ -1,1 +1,4 @@
-
+replicaCount: 1
+image:
+  repository: edennolan2021/fruits
+  tag: "2.0"
